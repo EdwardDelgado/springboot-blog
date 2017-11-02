@@ -1,9 +1,7 @@
 package com.codeup.blog.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostsController {
@@ -11,28 +9,28 @@ public class PostsController {
     @GetMapping("/posts")
     @ResponseBody
 
-    public String posts(){
+    public String showAll(){
         return "posts index page";
     }
 
     @GetMapping("/posts/{id}")
     @ResponseBody
 
-    public String postsId(){
-        return "view an individual post";
+    public String postId(@PathVariable int id){
+        return "view an individual post " + id;
     }
 
     @GetMapping("/posts/create")
     @ResponseBody
 
-    public String postsCreateGet(){
+    public String showCreateForm(){
         return "view the form for creating a post";
     }
 
-    @PatchMapping("/posts/create")
+    @PostMapping("/posts/create")
     @ResponseBody
 
-    public String postsCreatePost(){
+    public String createPost(){
         return "create a new post";
     }
 }
