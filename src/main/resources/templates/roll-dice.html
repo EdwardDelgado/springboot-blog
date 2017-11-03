@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: main-header('Roll Dice')"></head>
+
 <body>
 
 <div th:if="${guess != null}">
@@ -12,8 +10,8 @@ Guess:
 Rnd:
 <p th:text="${rnd}"></p>
 
-<h1 th:text="${win}">"Winner, Winner, Chicken Dinner!"</h1>
-<h1 th:text="${!win}">"LOSER!"</h1>
+<h1 th: th:if="${win}">"Winner, Winner, Chicken Dinner!"</h1>
+<h1 th: th:if="${!win}">"LOSER!"</h1>
 </div>
 
 
@@ -24,6 +22,7 @@ Rnd:
 <li><a href="/roll-dice/5"><a/>5</a></li>
 <li><a href="/roll-dice/6"><a/>6</a></li>
 
+<footer th:include="fragments/footer :: footer"></footer>
 
 </body>
 </html>
