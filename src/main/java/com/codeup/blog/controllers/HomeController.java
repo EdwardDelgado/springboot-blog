@@ -11,12 +11,10 @@ public class HomeController {
 //    4. Bind this method to a URL
     @GetMapping("/home")
 
-//    3. Add response body annotation
-    @ResponseBody
-
 //    2. Create a regular method for your controller action
-    public String home(){
-        return "This is the landing page!";
+    public String welcome(){
+
+        return "home";
     }
 
 }

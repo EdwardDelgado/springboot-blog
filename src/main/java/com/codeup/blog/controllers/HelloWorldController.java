@@ -7,18 +7,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloWorldController {
-
     @GetMapping("/hello")
     @ResponseBody
-
-    public String hello(){
+    public String hello() {
         return "Hello, World!!";
     }
-    @ResponseBody
-    @GetMapping("/hello/{name}")
-    public String helloName(@PathVariable String name){
-        return "Hello, "+ name + "!!";
-    }
+
+//    @ResponseBody
+//    @GetMapping("/hello/{name}")
+//    public String helloName(@PathVariable String name) {
+//        return "Hello, " + name + "!!";
+//    }
 
     @ResponseBody
     @GetMapping("/hello/{firstName}/{lastName}")
@@ -26,9 +25,11 @@ public class HelloWorldController {
         return "<h1>Hello, " + firstName + " " + lastName + "!!</h1>";
     }
 
+    // /square/2
+    // 4
     @ResponseBody
     @GetMapping("/square/{number}")
-    public Integer square(@PathVariable Integer number){
+    public Double square(@PathVariable Double number) {
         return number *number;
     }
 }
