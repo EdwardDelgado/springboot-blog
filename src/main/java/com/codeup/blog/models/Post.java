@@ -1,9 +1,24 @@
 package com.codeup.blog.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String title;
+
+    // By default, String properties will be mapped to VARCHAR columns, if we want
+    // a column of type TEXT, we can specify it like so:
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
+
+    public Post() {
+    }
 
     // Use on the CREATE action
     public Post(String title, String body) {
@@ -41,4 +56,5 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
 }
