@@ -1,7 +1,10 @@
 package com.codeup.blog.controllers;
 
 import com.codeup.blog.models.Post;
+import com.codeup.blog.models.User;
+import com.codeup.blog.repositories.UsersRepository;
 import com.codeup.blog.services.PostSvc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +14,14 @@ import java.util.ArrayList;
 @Controller
 public class PostsController {
     private final PostSvc service;
+    private final UsersRepository usersDao;
 
+    @Autowired
     // Constructor injection
-    public PostsController(PostSvc service) {
+    public PostsController(PostSvc service, UsersRepository usersDao) {
+
         this.service = service;
+        this.usersDao = usersDao;
     }
 
     @GetMapping("/posts")
@@ -47,6 +54,8 @@ public class PostsController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
+        User user = usersDao.findOne(2L);
+        post.setUser(user);
         service.save(post);
         return "redirect:/posts";
     }
