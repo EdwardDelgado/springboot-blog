@@ -1,20 +1,40 @@
 package com.codeup.blog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// 1. Add Controller Annotation
+import java.util.ArrayList;
+
+// 1. Add controller annotation
 @Controller
 public class HomeController {
 
-//    4. Bind this method to a URL
-    @GetMapping("/home")
+    @GetMapping("/hello/{name}")
+    //2. Create a regular method for your controller action
+    public String sayHello(@PathVariable String name, Model viewModel) {
+        // This is the replacement for the request method, in order to set attributes in the controller to the view.
 
-//    2. Create a regular method for your controller action
-    public String welcome(){
+        ArrayList<String> names = new ArrayList<>();
 
-        return "home";
+        names.add("edward");
+        names.add("micky");
+        names.add("carlo");
+        names.add("paul");
+
+        viewModel.addAttribute("name", name);
+        viewModel.addAttribute("rainy", true);
+        viewModel.addAttribute("names", names);
+
+        return "hello";
     }
 
+    // This only shows the home html file without any logic or params
+    @GetMapping("/home")
+    public String showIndex() {
+        // The return takes the name of the file and looks for the html file in the resources/templates folder.
+        return "home";
+    }
 }
